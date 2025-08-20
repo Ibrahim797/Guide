@@ -1,0 +1,705 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>لغتي الثانية. | مرشد تعلم اللغة الإنجليزية</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;500;700&display=swap" rel="stylesheet">
+    <style>
+        body {
+            font-family: 'Cairo', sans-serif;
+        }
+        
+        .custom-focus:focus {
+            outline: none;
+            box-shadow: 0 0 0 3px rgba(162, 123, 92, 0.4);
+        }
+        
+        /* Animation */
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+        
+        .fade-in {
+            animation: fadeIn 0.5s ease-out;
+        }
+
+        /* Modal Animation */
+        @keyframes modal-in {
+            from { opacity: 0; transform: scale(0.95) translateY(10px); }
+            to { opacity: 1; transform: scale(1) translateY(0); }
+        }
+
+        .modal-animate {
+            animation: modal-in 0.3s ease-out;
+        }
+        
+        /* Progress Bar */
+        .progress-bar {
+            transition: width 0.3s ease;
+        }
+        
+        /* Print Styles */
+        @media print {
+            body { background: white; }
+            .no-print { display: none; }
+            .print-break { page-break-after: always; }
+        }
+    </style>
+    <script>
+        // Custom Tailwind colors configuration
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        'base': '#DCD7C9',
+                        'primary': '#A27B5C',
+                        'primary-dark': '#8C6B4F',
+                        'text-main': '#2c3639',
+                        'text-muted': '#6E5E54',
+                    }
+                }
+            }
+        }
+    </script>
+</head>
+<body class="bg-gradient-to-br from-base to-[#C3B8A8] min-h-screen">
+
+    <div class="container mx-auto max-w-4xl my-8 md:my-12 p-6 md:p-8 bg-white/70 backdrop-blur-md rounded-3xl shadow-2xl border border-white/50">
+        
+        <!-- Header -->
+        <div class="text-center mb-10">
+            <h1 class="text-3xl md:text-4xl font-bold bg-gradient-to-r from-primary to-primary-dark bg-clip-text text-transparent pb-2">
+                لغتي الثانية.
+            </h1>
+            <p class="text-base md:text-lg text-text-muted mt-2">
+                احصل على نصائح وإرشادات مخصصة مبنية على العلم، في ثوانٍ.
+            </p>
+            
+            <!-- Progress Bar -->
+            <div class="mt-6 bg-gray-200 rounded-full h-2 overflow-hidden">
+                <div id="progress-bar" class="progress-bar bg-gradient-to-r from-primary to-primary-dark h-full w-0"></div>
+            </div>
+        </div>
+
+        <!-- Input Form -->
+        <form id="learning-form" class="space-y-8">
+            
+            <!-- Level Selection -->
+            <div class="form-section">
+                <label for="level" class="block mb-3 font-medium text-text-main">
+                    ما هو مستواك الحالي في اللغة الإنجليزية؟
+                    <span class="text-sm text-text-muted block mt-1">اختر المستوى الأقرب لقدراتك الحالية</span>
+                </label>
+                <select id="level" required class="w-full p-4 bg-white/50 border border-gray-300/50 rounded-xl custom-focus transition-all duration-300 text-text-main hover:border-primary/50">
+                    <option value="">-- اختر مستواك --</option>
+                    <option value="A1">مبتدئ تمامًا (A1 - Breakthrough)</option>
+                    <option value="A2">مبتدئ (A2 - Waystage)</option>
+                    <option value="B1">متوسط (B1 - Threshold)</option>
+                    <option value="B2">فوق المتوسط (B2 - Vantage)</option>
+                    <option value="C1">متقدم (C1 - Effective Proficiency)</option>
+                    <option value="C2">متمكن (C2 - Mastery)</option>
+                </select>
+            </div>
+
+            <!-- Goal Selection -->
+            <div class="form-section">
+                <label class="block mb-3 font-medium text-text-main">
+                    ما هو هدفك الأساسي من التعلم؟
+                    <span class="text-sm text-text-muted block mt-1">سيؤثر هذا على نوع المحتوى والمواد المقترحة</span>
+                </label>
+                <div class="grid grid-cols-1 md:grid-cols-3 gap-4">
+                    <label class="goal-card relative flex flex-col items-center justify-center p-4 border-2 border-gray-300/50 rounded-xl cursor-pointer transition-all duration-300 hover:border-primary/50 has-[:checked]:border-primary has-[:checked]:bg-primary/10 has-[:checked]:shadow-md">
+                        <input type="radio" name="goal" value="general" class="absolute opacity-0" checked required>
+                        <svg class="w-8 h-8 mb-2 text-primary" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 6.253v13m0-13C10.832 5.477 9.246 5 7.5 5S4.168 5.477 3 6.253v13C4.168 18.477 5.754 18 7.5 18s3.332.477 4.5 1.253m0-13C13.168 5.477 14.754 5 16.5 5c1.747 0 3.332.477 4.5 1.253v13C19.832 18.477 18.247 18 16.5 18c-1.746 0-3.332.477-4.5 1.253"></path>
+                        </svg>
+                        <span class="font-medium text-text-main">أهداف عامة</span>
+                    </label>
+                    
+                    <label class="goal-card relative flex flex-col items-center justify-center p-4 border-2 border-gray-300/50 rounded-xl cursor-pointer transition-all duration-300 hover:border-primary/50 has-[:checked]:border-primary has-[:checked]:bg-primary/10 has-[:checked]:shadow-md">
+                        <input type="radio" name="goal" value="business" class="absolute opacity-0" required>
+                        <svg class="w-8 h-8 mb-2 text-primary" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 13.255A23.931 23.931 0 0112 15c-3.183 0-6.22-.62-9-1.745M16 6V4a2 2 0 00-2-2h-4a2 2 0 00-2 2v2m4 6h.01M5 20h14a2 2 0 002-2V8a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"></path>
+                        </svg>
+                        <span class="font-medium text-text-main">أهداف مهنية</span>
+                    </label>
+                    
+                    <label class="goal-card relative flex flex-col items-center justify-center p-4 border-2 border-gray-300/50 rounded-xl cursor-pointer transition-all duration-300 hover:border-primary/50 has-[:checked]:border-primary has-[:checked]:bg-primary/10 has-[:checked]:shadow-md">
+                        <input type="radio" name="goal" value="academic" class="absolute opacity-0" required>
+                        <svg class="w-8 h-8 mb-2 text-primary" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                           <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 14l9-5-9-5-9 5 9 5z"></path>
+                           <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 14l6.16-3.422a12.083 12.083 0 01.665 6.479A11.952 11.952 0 0012 20.055a11.952 11.952 0 00-6.824-2.998 12.078 12.078 0 01.665-6.479L12 14z"></path>
+                           <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 14l9-5-9-5-9 5 9 5zm0 0l6.16-3.422a12.083 12.083 0 01.665 6.479A11.952 11.952 0 0012 20.055a11.952 11.952 0 00-6.824-2.998 12.078 12.078 0 01.665-6.479L12 14zm-4 6v-7.5l4-2.222 4 2.222V20" />
+                        </svg>
+                        <span class="font-medium text-text-main">أهداف أكاديمية</span>
+                    </label>
+                </div>
+            </div>
+
+            <!-- Hours Input -->
+            <div class="form-section">
+                <label for="hours" class="block mb-3 font-medium text-text-main">
+                    كم ساعة يمكنك تخصيصها أسبوعيًا؟
+                    <span class="text-sm text-text-muted block mt-1">كن واقعيًا - الاستمرارية أهم من الكثافة</span>
+                </label>
+                <div class="flex items-center gap-4">
+                    <input type="range" id="hours-slider" min="1" max="30" value="5" class="flex-1 accent-primary">
+                    <input type="number" id="hours" value="5" min="1" max="30" required class="w-24 p-3 bg-white/50 border border-gray-300/50 rounded-xl custom-focus text-center text-text-main">
+                    <span class="text-text-muted">ساعة</span>
+                </div>
+                <div id="commitment-level" class="mt-2 text-sm text-text-muted text-center"></div>
+            </div>
+
+            <!-- Action Buttons -->
+            <div class="flex flex-col sm:flex-row gap-4">
+                <button type="submit" id="generate-btn" class="flex-1 flex items-center justify-center gap-3 py-4 px-4 bg-gradient-to-r from-primary to-primary-dark text-white font-bold text-lg rounded-xl shadow-lg hover:shadow-xl hover:-translate-y-1 focus:outline-none focus:ring-4 focus:ring-primary/50 transition-all duration-300">
+                    <span>احصل على استشارة فورية</span>
+                    <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 7l5 5m0 0l-5 5m5-5H6" />
+                    </svg>
+                </button>
+                
+                <button type="button" id="reset-btn" class="no-print px-6 py-4 border-2 border-gray-300 text-gray-600 font-medium rounded-xl hover:bg-gray-50 transition-all duration-300">
+                    إعادة تعيين
+                </button>
+            </div>
+        </form>
+
+        <!-- Result -->
+        <div id="result-container" class="hidden mt-12">
+            <div id="result" class="fade-in p-6 bg-white/80 border-l-4 border-primary rounded-xl shadow-inner"></div>
+            
+            <!-- Additional Buttons -->
+            <div class="no-print mt-6 flex flex-wrap gap-4 justify-center">
+                <button id="save-btn" class="flex items-center gap-2 px-6 py-3 bg-green-600 text-white rounded-lg hover:bg-green-700 transition-colors">
+                    <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 7H5a2 2 0 00-2 2v9a2 2 0 002 2h14a2 2 0 002-2V9a2 2 0 00-2-2h-3m-1 4l-3 3m0 0l-3-3m3 3V2"></path>
+                    </svg>
+                    حفظ الإرشادات
+                </button>
+                
+                <button id="print-btn" class="flex items-center gap-2 px-6 py-3 bg-blue-600 text-white rounded-lg hover:bg-blue-700 transition-colors">
+                    <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 17h2a2 2 0 002-2v-4a2 2 0 00-2-2H5a2 2 0 00-2 2v4a2 2 0 002 2h2m2 4h6a2 2 0 002-2v-4a2 2 0 00-2-2H9a2 2 0 00-2 2v4a2 2 0 002 2zm8-12V5a2 2 0 00-2-2H9a2 2 0 00-2 2v4h10z"></path>
+                    </svg>
+                    طباعة
+                </button>
+                
+                <button id="share-btn" class="flex items-center gap-2 px-6 py-3 bg-purple-600 text-white rounded-lg hover:bg-purple-700 transition-colors">
+                    <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8.684 13.342C8.886 12.938 9 12.482 9 12c0-.482-.114-.938-.316-1.342m0 2.684a3 3 0 110-2.684m9.032 4.026a3 3 0 10-4.732 2.684 3 3 0 003.726 2.932 3 3 0 00.742-5.616h-.742m0 0a3 3 0 10-4.732-2.684m4.732 2.684h.008"></path>
+                    </svg>
+                    مشاركة
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Footer -->
+    <footer class="text-center p-4 mt-4 text-text-muted no-print">
+        <p>&copy; <span id="current-year"></span> <a href="https://www.my2ndlang.blog" target="_blank" rel="noopener noreferrer" class="hover:text-primary transition-colors">لغتي الثانية.</a></p>
+    </footer>
+
+
+    <!-- Custom Modal -->
+    <div id="custom-modal" class="hidden fixed inset-0 bg-gray-900 bg-opacity-60 flex items-center justify-center p-4 z-50">
+        <div class="modal-animate bg-white rounded-2xl shadow-xl w-full max-w-md p-6 text-center">
+            <p id="modal-text" class="text-lg text-text-main mb-6"></p>
+            <div id="modal-actions" class="flex justify-center gap-4">
+                <!-- Buttons will be injected here -->
+            </div>
+        </div>
+    </div>
+
+
+    <script>
+    // ==================== Data and Settings ====================
+    const PLAN_DATA = {
+        levels: {
+            'A1': {
+                title: 'إرشادات للمستوى A1: الخطوة الأولى نحو الثقة',
+                principle: '<strong>الفكرة الأساسية:</strong> هدفك الأول هو كسر حاجز الخوف وبناء عادة يومية. التركيز على "لغة النجاة" (Survival Language) التي تمنحك شعورًا فوريًا بالإنجاز والثقة.',
+                focus: 'التركيز حصريًا على حفظ العبارات الأساسية (التحيات، التعريف بالنفس، طلب المساعدة) وفهم الكلمات عالية التردد. لا تشغل بالك بالقواعد المعقدة الآن.',
+                bookLevel: 'Beginner (A1)',
+                alphabetNote: '<strong>🔤 ملاحظة مهمة:</strong> إذا لم تتقن الأبجدية الإنجليزية بعد، ننصحك بشدة بالبدء بدورة الألفبائية المجانية المتوفرة على <a href="https://www.my2ndlang.blog" target="_blank" rel="noopener noreferrer" class="text-primary hover:underline font-bold">موقع لغتي الثانية.</a>',
+                timeEstimate: '<strong>⏱️ تقدير الوقت للانتقال للمستوى التالي:</strong> لمعرفة المدة المتوقعة للانتقال من A1 إلى A2 بناءً على الأبحاث العلمية وعدد ساعات دراستك الأسبوعية، قم بزيارة <a href="https://www.my2ndlang.blog" target="_blank" rel="noopener noreferrer" class="text-primary hover:underline font-bold">موقع لغتي الثانية.</a>'
+            },
+            'A2': {
+                title: 'إرشادات للمستوى A2: بناء الجسور اللغوية',
+                principle: '<strong>الفكرة الأساسية:</strong> لقد تجاوزت مرحلة "النجاة". الآن هدفك هو البدء في ربط الأفكار وتكوين جمل بسيطة بنفسك. ستبدأ في الانتقال من مجرد ترديد العبارات المحفوظة إلى التعبير عن أفكارك الخاصة.',
+                focus: 'التركيز على فهم الجمل المتعلقة بالمواضيع الشخصية المباشرة (العائلة، العمل، التسوق). ستبدأ في ممارسة المحادثات القصيرة التي تتطلب تبادلًا بسيطًا ومباشرًا للمعلومات.',
+                bookLevel: 'Elementary (A2)',
+                timeEstimate: '<strong>⏱️ تقدير الوقت للانتقال للمستوى التالي:</strong> لمعرفة المدة المتوقعة للانتقال من A2 إلى B1 بناءً على الأبحاث العلمية وعدد ساعات دراستك الأسبوعية، قم بزيارة <a href="https://www.my2ndlang.blog" target="_blank" rel="noopener noreferrer" class="text-primary hover:underline font-bold">موقع لغتي الثانية.</a>'
+            },
+            'B1': {
+                title: 'إرشادات للمستوى B1: عتبة الاستقلال اللغوي',
+                principle: '<strong>الفكرة الأساسية:</strong> هذه هي أهم مرحلة انتقالية. هدفك هو أن تصبح "مستخدمًا مستقلاً" للغة. يجب أن تنتقل من الاعتماد على المواد التعليمية المبسطة إلى التعامل مع اللغة الحقيقية في المواضيع المألوفة.',
+                focus: 'التركيز على فهم النقاط الرئيسية عند الاستماع أو القراءة لمواضيع واضحة ومألوفة. الهدف الأكبر هو القدرة على وصف التجارب والأحداث وإعطاء أسباب وآراء بسيطة.',
+                bookLevel: 'Intermediate (B1)',
+                timeEstimate: '<strong>⏱️ تقدير الوقت للانتقال للمستوى التالي:</strong> لمعرفة المدة المتوقعة للانتقال من B1 إلى B2 بناءً على الأبحاث العلمية وعدد ساعات دراستك الأسبوعية، قم بزيارة <a href="https://www.my2ndlang.blog" target="_blank" rel="noopener noreferrer" class="text-primary hover:underline font-bold">موقع لغتي الثانية.</a>'
+            },
+            'B2': {
+                title: 'إرشادات للمستوى B2: الانطلاق نحو الطلاقة',
+                principle: '<strong>الفكرة الأساسية:</strong> هدفك الآن هو الطلاقة والعفوية. يجب أن تتمكن من التفاعل مع الناطقين الأصليين دون أن يشعر أي من الطرفين بضغط أو إرهاق. هذا يتطلب بناء سرعة في الفهم والإنتاج.',
+                focus: 'التركيز على فهم الأفكار الرئيسية للنصوص المعقدة في مواضيع متنوعة، بما في ذلك مجالك التخصصي. الهدف هو التفاعل بدرجة من الطلاقة والعفوية تجعل المحادثات العادية ممكنة ومريحة.',
+                bookLevel: 'Upper-Intermediate (B2)',
+                timeEstimate: '<strong>⏱️ تقدير الوقت للانتقال للمستوى التالي:</strong> لمعرفة المدة المتوقعة للانتقال من B2 إلى C1 بناءً على الأبحاث العلمية وعدد ساعات دراستك الأسبوعية، قم بزيارة <a href="https://www.my2ndlang.blog" target="_blank" rel="noopener noreferrer" class="text-primary hover:underline font-bold">موقع لغتي الثانية.</a>'
+            },
+            'C1': {
+                title: 'إرشادات للمستوى C1: الكفاءة الفعالة والمرونة',
+                principle: '<strong>الفكرة الأساسية:</strong> لم يعد الأمر يتعلق بالتواصل فقط، بل بمدى فعالية ومرونة هذا التواصل. هدفك هو فهم ما هو "بين السطور" (المعنى الضمني) واستخدام اللغة بمرونة في سياقات مختلفة.',
+                focus: 'التركيز على فهم مجموعة واسعة من النصوص الطويلة والصعبة، والتعرف على المعاني الضمنية. الهدف هو التعبير عن نفسك بطلاقة وعفوية دون بحث واضح عن الكلمات.',
+                bookLevel: '',
+                timeEstimate: '<strong>⏱️ تقدير الوقت للانتقال للمستوى التالي:</strong> لمعرفة المدة المتوقعة للانتقال من C1 إلى C2 بناءً على الأبحاث العلمية وعدد ساعات دراستك الأسبوعية، قم بزيارة <a href="https://www.my2ndlang.blog" target="_blank" rel="noopener noreferrer" class="text-primary hover:underline font-bold">موقع لغتي الثانية.</a>'
+            },
+            'C2': {
+                title: 'إرشادات للمستوى C2: الإتقان والدقة',
+                principle: '<strong>الفكرة الأساسية:</strong> أنت الآن في مرحلة صقل المهارات للوصول إلى مستوى يشبه الناطق الأصلي المتعلم. الهدف هو الدقة الكاملة، وفهم الفروق الدقيقة جدًا في المعنى.',
+                focus: 'التركيز هو فهم كل ما يُسمع أو يُقرأ بسهولة تامة. الهدف هو التعبير عن النفس بعفوية وطلاقة ودقة فائقة، مع التمييز بين الفروق الدقيقة في المعنى.',
+                bookLevel: '',
+                timeEstimate: '<strong>🎯 تهانينا!</strong> لقد وصلت إلى أعلى مستوى في إتقان اللغة الإنجليزية. للمزيد من الموارد المتقدمة والنصائح للحفاظ على مستواك، قم بزيارة <a href="https://www.my2ndlang.blog" target="_blank" rel="noopener noreferrer" class="text-primary hover:underline font-bold">موقع لغتي الثانية.</a>'
+            }
+        }
+    };
+
+    // ==================== Helper Functions ====================
+    
+    /**
+     * Shows a custom modal with a message and action buttons.
+     * @param {string} text - The message to display.
+     * @param {Array<Object>} actions - Array of action objects {label, class, callback}.
+     */
+    function showModal(text, actions = []) {
+        const modal = document.getElementById('custom-modal');
+        document.getElementById('modal-text').textContent = text;
+        const actionsContainer = document.getElementById('modal-actions');
+        actionsContainer.innerHTML = ''; // Clear previous actions
+
+        if (actions.length === 0) {
+            // Default "OK" button if no actions are provided
+            actions.push({
+                label: 'حسنًا',
+                class: 'bg-primary text-white',
+                callback: () => {}
+            });
+        }
+
+        actions.forEach(action => {
+            const button = document.createElement('button');
+            button.textContent = action.label;
+            button.className = `px-6 py-2 rounded-lg font-medium transition-transform transform hover:scale-105 ${action.class}`;
+            button.onclick = () => {
+                modal.classList.add('hidden');
+                if (action.callback) {
+                    action.callback();
+                }
+            };
+            actionsContainer.appendChild(button);
+        });
+
+        modal.classList.remove('hidden');
+    }
+
+    function updateProgressBar(step) {
+        const totalSteps = 3;
+        const progress = (step / totalSteps) * 100;
+        document.getElementById('progress-bar').style.width = progress + '%';
+    }
+
+    function updateHoursDisplay(value) {
+        document.getElementById('hours').value = value;
+        updateCommitmentLevel(value);
+    }
+
+    function updateHoursSlider(value) {
+        value = Math.min(30, Math.max(1, value));
+        document.getElementById('hours-slider').value = value;
+        updateCommitmentLevel(value);
+    }
+
+    function updateCommitmentLevel(hours) {
+        const levelElement = document.getElementById('commitment-level');
+        let level = '';
+        let color = '';
+        
+        if (hours <= 4) {
+            level = '💡 التزام منخفض - التركيز على بناء العادة';
+            color = 'text-yellow-600';
+        } else if (hours <= 10) {
+            level = '⚡ التزام معتدل - تقدم ثابت متوقع';
+            color = 'text-blue-600';
+        } else if (hours <= 20) {
+            level = '🚀 التزام عالٍ - تقدم سريع';
+            color = 'text-green-600';
+        } else {
+            level = '🔥 انغماس كامل - تحول جذري';
+            color = 'text-red-600';
+        }
+        
+        levelElement.className = `mt-2 text-sm text-center font-medium ${color}`;
+        levelElement.textContent = level;
+    }
+    
+    function getGoalAdvice(goal, level) {
+        const isBeginnerLevel = ['A1', 'A2'].includes(level);
+        const isIntermediateLevel = ['B1', 'B2'].includes(level);
+        
+        if (goal === 'general') {
+            if (isBeginnerLevel) {
+                return '<strong>لمسة شخصية:</strong> ابدأ بمواضيع تحبها: إذا تحب كرة القدم، تعلم أسماء اللاعبين والفرق بالإنجليزية. إذا تحب الطبخ، تعلم أسماء الأطعمة والأدوات. الشغف يجعل التعلم أسهل!';
+            } else if (isIntermediateLevel) {
+                return '<strong>لمسة شخصية:</strong> اجعل هواياتك واهتماماتك محور تعلمك. شاهد فيديوهات يوتيوب عن هواياتك، انضم لمنتديات عن اهتماماتك، واقرأ مقالات في مجالات تحبها.';
+            } else {
+                return '<strong>لمسة شخصية:</strong> تعمق في مجالات شغفك. اقرأ كتبًا متخصصة، شاهد وثائقيات معقدة، وشارك في نقاشات عميقة حول اهتماماتك.';
+            }
+        } else if (goal === 'business') {
+            if (level === 'A1') {
+                return '<strong>لمسة مهنية للمبتدئين:</strong> ركز على الأساسيات المهنية البسيطة: الأرقام، أيام الأسبوع، التحيات الرسمية، المسميات الوظيفية البسيطة (manager, secretary, office). لا تقلق بشأن القراءات المعقدة الآن!';
+            } else if (level === 'A2') {
+                return '<strong>لمسة مهنية للمستوى الأساسي:</strong> تعلم العبارات الأساسية للعمل: كيف تجيب الهاتف، كيف تكتب إيميل بسيط جدًا، كيف تعرف عن وظيفتك في جملتين. استخدم تطبيقات مثل "Business English for Beginners".';
+            } else if (isIntermediateLevel) {
+                return '<strong>لمسة مهنية:</strong> ابدأ بقراءة مقالات أعمال مبسطة من BBC Learning English أو VOA Business. استمع لبودكاست للمتعلمين مثل "Business English Pod". شاهد فيديوهات TED قصيرة مع الترجمة.';
+            } else {
+                return '<strong>لمسة مهنية متقدمة:</strong> الآن يمكنك قراءة The Wall Street Journal وHarvard Business Review. استمع لبودكاست متخصصة في مجالك، وشاهد عروضًا تقديمية من مؤتمرات احترافية.';
+            }
+        } else { // academic
+            if (level === 'A1') {
+                return '<strong>لمسة أكاديمية للمبتدئين:</strong> ركز على أساسيات الدراسة: أسماء الأدوات المدرسية، الألوان، الأشكال، الأرقام. تعلم كيف تقول "I am a student" و"I study..."، واحفظ أسماء المواد الدراسية الأساسية.';
+            } else if (level === 'A2') {
+                return '<strong>لمسة أكاديمية أساسية:</strong> تعلم كيف تصف جدولك الدراسي، كيف تطلب المساعدة من المعلم، وكيف تفهم التعليمات البسيطة. اقرأ قصصًا قصيرة جدًا للمتعلمين.';
+            } else if (isIntermediateLevel) {
+                return '<strong>لمسة أكاديمية:</strong> ابدأ بقراءة مقالات علمية مبسطة من "Science for Kids" أو "National Geographic Kids". تعلم كيف تكتب فقرة منظمة وكيف تلخص نصًا بسيطًا.';
+            } else {
+                return '<strong>لمسة أكاديمية متقدمة:</strong> انغمس في المواد الأكاديمية الحقيقية. اقرأ أبحاثًا في مجالك، شاهد محاضرات جامعية على Coursera، وتدرب على كتابة المقالات الأكاديمية. ركز على Academic Word List (AWL).';
+            }
+        }
+    }
+
+    function getTimeStrategy(hours, level) {
+        const isBeginnerLevel = ['A1', 'A2'].includes(level);
+        const isIntermediateLevel = ['B1', 'B2'].includes(level);
+        
+        let strategy = {};
+        
+        if (hours <= 4) {
+            strategy.title = `استراتيجية الالتزام المنخفض (${hours} ساعات/أسبوع)`;
+            strategy.description = 'مع جدول مزدحم، الاستمرارية أهم من الكثافة. ركز على بناء عادة يومية صغيرة لا يمكن تفويتها.';
+            
+            if (isBeginnerLevel) {
+                strategy.activities = [
+                    '<strong>العادة اليومية (15 دقيقة):</strong> اجعل "تمرين الذاكرة الذكي" (SRS) هو نشاطك اليومي الأساسي باستخدام Anki أو Memrise.',
+                    '<strong>الجلسة الأسبوعية (1-2 ساعة):</strong> خصص هذه الجلسة لـ "الاستماع والقراءة الممتعة" في موضوع واحد لزيادة التركيز.',
+                    '<strong>نصيحة ذهبية:</strong> لا تقلق بشأن التحدث الآن. ركز 100% على بناء المفردات والفهم.'
+                ];
+            } else if (isIntermediateLevel) {
+                strategy.activities = [
+                    '<strong>العادة اليومية (15-20 دقيقة):</strong> استمع إلى بودكاست قصير أو اقرأ مقالاً إخباريًا أثناء تنقلاتك.',
+                    '<strong>الجلسة الأسبوعية (2-3 ساعات):</strong> اختر "مشروعًا" صغيرًا واحدًا للأسبوع.',
+                    '<strong>نصيحة:</strong> استخدم اللغة بشكل سلبي خلال الأسبوع وبشكل نشط في جلستك المركزة.'
+                ];
+            } else {
+                strategy.activities = [
+                    '<strong>التركيز اليومي:</strong> اختر جانبًا واحدًا دقيقًا للتحسين كل يوم.',
+                    '<strong>المراجعة الأسبوعية:</strong> سجل نفسك وحلل نقاط الضعف.',
+                    '<strong>التحدي الشهري:</strong> اختر موضوعًا معقدًا واكتب عنه مقالاً احترافيًا.'
+                ];
+            }
+        } else if (hours <= 10) {
+            strategy.title = `استراتيجية الالتزام المعتدل (${hours} ساعات/أسبوع)`;
+            strategy.description = 'هذا وقت ممتاز لتحقيق تقدم ثابت. يمكنك بناء عادة يومية قوية مع تخصيص وقت كافٍ للممارسة التفاعلية.';
+            
+            if (isBeginnerLevel) {
+                strategy.activities = [
+                    '<strong>تمرين الذاكرة الذكي (10-15 دقيقة يوميًا):</strong> استخدم تطبيقات البطاقات التعليمية لبناء مفرداتك.',
+                    '<strong>الاستماع والقراءة الممتعة (30-40 دقيقة يوميًا):</strong> هذا هو "الغذاء" الذي ينمي لغتك بشكل طبيعي.',
+                    '<strong>تدريب آمن على المحادثة (مرة واحدة أسبوعيًا):</strong> تدرب على حوارات بسيطة لبناء الثقة.'
+                ];
+            } else if (isIntermediateLevel) {
+                strategy.activities = [
+                    '<strong>الغوص في العالم الحقيقي (45-60 دقيقة يوميًا):</strong> معظم وقتك للاستماع والقراءة لمواد حقيقية.',
+                    '<strong>تطبيق "خلط الأوراق":</strong> بعد مشاهدة مقطع، حاول تلخيصه لصديق.',
+                    '<strong>حوّل المعرفة إلى مهارة (مرتين أسبوعيًا):</strong> خصص وقتًا للكتابة أو التحدث.'
+                ];
+            } else {
+                strategy.activities = [
+                    '<strong>الممارسة المتعمدة (يوميًا):</strong> اختر مهارة دقيقة للتركيز عليها كل يوم.',
+                    '<strong>اصطياد الأخطاء العنيدة (مرتين أسبوعيًا):</strong> سجل صوتك وحلل الأخطاء.',
+                    '<strong>كن "مدرب نفسك":</strong> ضع أهدافًا صغيرة وقيّم أداءك.'
+                ];
+            }
+        } else {
+            strategy.title = `استراتيجية الالتزام العالي أو الانغماس (${hours} ساعات/أسبوع)`;
+            strategy.description = 'مع هذا الوقت، يمكنك تسريع تقدمك بشكل كبير. الهدف هو دمج اللغة الإنجليزية في كل جانب من جوانب يومك.';
+            
+            strategy.activities = [
+                '<strong>روتين الصباح (60-90 دقيقة):</strong> ابدأ يومك باللغة الإنجليزية بالكامل.',
+                '<strong>دمج المهام (طوال اليوم):</strong> غيّر لغة كل أجهزتك وشاهد الترفيه بالإنجليزية فقط.',
+                '<strong>الدراسة المركزة (1-2 ساعة يوميًا):</strong> وقت للعمل العميق والتحليل.',
+                '<strong>التفاعل الاجتماعي (يوميًا):</strong> ابحث بنشاط عن فرص للتحدث والتواصل.'
+            ];
+        }
+        
+        return strategy;
+    }
+
+    function addSpecialResources(level, activities) {
+        const bookLevel = PLAN_DATA.levels[level].bookLevel;
+        
+        if (bookLevel) {
+            activities.push(
+                `<strong>اقتراح مصدر للقراءة:</strong> للعثور على كتب مناسبة، تصفح موقع <a href="https://english-e-reader.net/" target="_blank" class="text-primary hover:underline">english-e-reader.net</a>. ركز على قسم <strong>${bookLevel}</strong>.`
+            );
+        }
+        
+        if (['B1', 'B2', 'C1', 'C2'].includes(level)) {
+            activities.push(
+                '<strong>أداة حديثة للتحدث:</strong> استخدم ميزة المحادثة الصوتية المجانية في تطبيق ChatGPT على هاتفك لممارسة التحدث في بيئة آمنة وتفاعلية.'
+            );
+        }
+        
+        return activities;
+    }
+
+    // ==================== Main Function ====================
+    
+    function generatePlan() {
+        // Validate inputs
+        const level = document.getElementById('level').value;
+        const goal = document.querySelector('input[name="goal"]:checked')?.value;
+        const hours = parseInt(document.getElementById('hours').value, 10);
+        
+        if (!level || !goal || !hours || hours < 1 || hours > 100) {
+            showModal('الرجاء التأكد من تعبئة جميع الحقول بشكل صحيح.');
+            return;
+        }
+        
+        // Update progress bar
+        updateProgressBar(3);
+        
+        // Show loading indicator
+        const generateBtn = document.getElementById('generate-btn');
+        const originalContent = generateBtn.innerHTML;
+        generateBtn.innerHTML = '<span>جارٍ الإعداد...</span><svg class="animate-spin h-5 w-5 text-white" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"><circle class="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" stroke-width="4"></circle><path class="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"></path></svg>';
+        generateBtn.disabled = true;
+        
+        // Simulate delay for better UX
+        setTimeout(() => {
+            // Build the plan
+            const levelData = PLAN_DATA.levels[level];
+            const goalAdvice = getGoalAdvice(goal, level);
+            const timeStrategy = getTimeStrategy(hours, level);
+            
+            let activities = [...timeStrategy.activities];
+            activities = addSpecialResources(level, activities);
+            activities.push(goalAdvice);
+            
+            // Build HTML
+            let html = `
+                <div class="space-y-6">
+                    <h3 class="text-2xl font-bold text-text-main mb-4">${levelData.title}</h3>
+                    
+                    ${level === 'A1' && levelData.alphabetNote ? `
+                    <div class="p-4 bg-blue-50 border border-blue-200 rounded-lg">
+                        ${levelData.alphabetNote}
+                    </div>
+                    ` : ''}
+                    
+                    <div class="p-4 bg-primary/10 rounded-lg text-text-main">
+                        ${levelData.principle}
+                    </div>
+                    
+                    <div>
+                        <strong class="font-medium text-text-main">التركيز الأساسي:</strong>
+                        <span class="text-text-muted">${levelData.focus}</span>
+                    </div>
+                    
+                    <div>
+                        <strong class="font-medium text-text-main">${timeStrategy.title}:</strong>
+                        <span class="text-text-muted">${timeStrategy.description}</span>
+                    </div>
+                    
+                    <div>
+                        <h4 class="font-medium text-text-main mb-3">أنشطة مقترحة:</h4>
+                        <ul class="list-disc list-inside space-y-3 text-text-muted">
+                            ${activities.map(activity => `<li>${activity}</li>`).join('')}
+                        </ul>
+                    </div>
+                    
+                    <div class="mt-6 p-4 bg-yellow-50 border border-yellow-200 rounded-lg">
+                        ${levelData.timeEstimate}
+                    </div>
+                </div>
+            `;
+            
+            // Display result
+            document.getElementById('result').innerHTML = html;
+            document.getElementById('result-container').classList.remove('hidden');
+            
+            // Scroll to result
+            document.getElementById('result-container').scrollIntoView({ 
+                behavior: 'smooth', 
+                block: 'center' 
+            });
+            
+            // Save guidance to localStorage
+            const guidanceData = {
+                level,
+                goal,
+                hours,
+                createdAt: new Date().toISOString()
+            };
+            localStorage.setItem('englishLearningGuidance', JSON.stringify(guidanceData));
+            
+            // Restore button state
+            generateBtn.innerHTML = originalContent;
+            generateBtn.disabled = false;
+        }, 500);
+    }
+    
+    // ==================== Additional Functions ====================
+    
+    function performReset() {
+        document.getElementById('learning-form').reset();
+        document.getElementById('result-container').classList.add('hidden');
+        document.getElementById('progress-bar').style.width = '0%';
+        document.getElementById('commitment-level').textContent = '';
+        updateHoursDisplay(5);
+        updateHoursSlider(5);
+    }
+
+    function savePlan() {
+        const planContent = document.getElementById('result').innerHTML;
+        if (!planContent) {
+            showModal('لا توجد إرشادات لحفظها. يرجى إنشاء خطة أولاً.');
+            return;
+        }
+        const blob = new Blob([`
+            <!DOCTYPE html>
+            <html lang="ar" dir="rtl">
+            <head>
+                <meta charset="UTF-8">
+                <title>خطتك التعليمية من لغتي الثانية.</title>
+                <style>
+                    body { font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif; padding: 20px; direction: rtl; line-height: 1.6; color: #333; }
+                    .container { max-width: 800px; margin: 0 auto; }
+                    h3 { color: #A27B5C; }
+                    ul { list-style-type: disc; padding-right: 20px; }
+                    a { color: #A27B5C; text-decoration: none; }
+                    strong { color: #2c3639; }
+                </style>
+            </head>
+            <body>
+                <div class="container">
+                    ${planContent}
+                </div>
+            </body>
+            </html>
+        `], { type: 'text/html' });
+        
+        const url = URL.createObjectURL(blob);
+        const a = document.createElement('a');
+        a.href = url;
+        a.download = `خطة-لغتي-الثانية-${new Date().toLocaleDateString('ar')}.html`;
+        a.click();
+        URL.revokeObjectURL(url);
+        
+        showModal('تم حفظ الإرشادات بنجاح! ✅');
+    }
+    
+    function sharePlan() {
+        const planText = document.getElementById('result').innerText;
+        if (!planText) {
+            showModal('لا توجد إرشادات لمشاركتها. يرجى إنشاء خطة أولاً.');
+            return;
+        }
+
+        const shareData = {
+            title: 'خطتي لتعلم الإنجليزية من لغتي الثانية.',
+            text: planText.substring(0, 200) + '...',
+            url: window.location.href
+        };
+        
+        if (navigator.share) {
+            navigator.share(shareData).catch(err => console.log('Error sharing:', err));
+        } else {
+            // Fallback - copy link
+            navigator.clipboard.writeText(window.location.href).then(() => {
+                showModal('تم نسخ رابط الصفحة! يمكنك مشاركته مع الآخرين 📋');
+            });
+        }
+    }
+    
+    // ==================== Initialization on Load ====================
+    
+    document.addEventListener('DOMContentLoaded', function() {
+        // Set current year in footer
+        document.getElementById('current-year').textContent = new Date().getFullYear();
+
+        // Add event listener for the form
+        document.getElementById('learning-form').addEventListener('submit', function(e) {
+            e.preventDefault();
+            generatePlan();
+        });
+        
+        // Event listeners for buttons
+        document.getElementById('reset-btn').addEventListener('click', () => {
+            showModal('هل أنت متأكد من إعادة تعيين النموذج؟', [
+                { label: 'نعم، أعد التعيين', class: 'bg-red-600 text-white', callback: performReset },
+                { label: 'إلغاء', class: 'bg-gray-200 text-gray-800', callback: () => {} }
+            ]);
+        });
+        document.getElementById('save-btn').addEventListener('click', savePlan);
+        document.getElementById('print-btn').addEventListener('click', () => window.print());
+        document.getElementById('share-btn').addEventListener('click', sharePlan);
+
+        // Event listeners for hours slider and input
+        document.getElementById('hours-slider').addEventListener('input', (e) => updateHoursDisplay(e.target.value));
+        document.getElementById('hours').addEventListener('input', (e) => updateHoursSlider(e.target.value));
+
+        // Load saved guidance if available
+        const savedGuidance = localStorage.getItem('englishLearningGuidance');
+        if (savedGuidance) {
+            const guidanceData = JSON.parse(savedGuidance);
+            const daysSince = Math.floor((new Date() - new Date(guidanceData.createdAt)) / (1000 * 60 * 60 * 24));
+            
+            if (daysSince < 30) {
+                 showModal(`لديك إرشادات محفوظة منذ ${daysSince} يوم. هل تريد استعادتها؟`, [
+                    { 
+                        label: 'نعم، استعدها', 
+                        class: 'bg-primary text-white', 
+                        callback: () => {
+                            document.getElementById('level').value = guidanceData.level;
+                            document.querySelector(`input[name="goal"][value="${guidanceData.goal}"]`).checked = true;
+                            document.getElementById('hours').value = guidanceData.hours;
+                            updateHoursSlider(guidanceData.hours);
+                            updateHoursDisplay(guidanceData.hours);
+                        } 
+                    },
+                    { label: 'لا، ابدأ من جديد', class: 'bg-gray-200 text-gray-800', callback: () => {} }
+                ]);
+            }
+        }
+        
+        // Initialize elements
+        updateHoursDisplay(5);
+        updateHoursSlider(5);
+        
+        // Track progress on form interaction
+        document.querySelectorAll('input, select').forEach(element => {
+            element.addEventListener('change', function() {
+                let step = 0;
+                if (document.getElementById('level').value) step++;
+                if (document.querySelector('input[name="goal"]:checked')) step++;
+                if (document.getElementById('hours').value) step++;
+                updateProgressBar(step);
+            });
+        });
+    });
+    </script>
+</body>
+</html>
